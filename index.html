@@ -1062,7 +1062,43 @@ document.getElementById("mugText")
 <script>
 
 let cart = [];
+<script>
 
+let cart = [];
+
+let selectedTshirtName = "";
+let selectedTshirtPrice = 45;
+let selectedTshirtSize = "";
+
+function openTshirtModels() {
+  document.getElementById("tshirtModels").style.display = "block";
+}
+
+function closeTshirtModels() {
+  document.getElementById("tshirtModels").style.display = "none";
+}
+
+function selectTshirt(name, price, sizeId) {
+
+  const size = document.getElementById(sizeId).value;
+
+  if (!size) {
+    alert("Te rugăm să alegi o mărime.");
+    return;
+  }
+
+  selectedTshirtName = name;
+  selectedTshirtPrice = price;
+  selectedTshirtSize = size;
+
+  closeTshirtModels();
+
+  alert(
+    name + " - " + size +
+    "\nPreț: " + price + " lei\n\n" +
+    "Urmează să adăugăm personalizarea."
+  );
+}
 
 /* ADAUGĂ CANA ÎN COȘ */
 
