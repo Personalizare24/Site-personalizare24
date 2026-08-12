@@ -288,12 +288,193 @@ Oi<!DOCTYPE html>
 
   <div class="categories">
 
-    <div class="category">
+    <div class="category" onclick="openMugConfigurator()" style="cursor:pointer;">
   <div class="product-image" style="height:120px;">
-    <img src="IMG_20260812_170500_078.jpg" alt="Cană personalizată" style="width:auto;max-width:90%;height:110px;object-fit:contain;">
+    <img src="IMG_20260812_170500_078.jpg"
+         alt="Cană personalizată"
+         style="width:auto;max-width:90%;height:110px;object-fit:contain;">
   </div>
-  Căni
+  <strong>Căni personalizate</strong>
+  <small>Încarcă poze și adaugă text ❤️</small>
 </div>
+
+<!-- CONFIGURATOR CANĂ -->
+<div id="mugConfigurator" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:9999;
+  overflow:auto;
+  padding:20px;
+">
+
+  <div style="
+    max-width:500px;
+    margin:30px auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    position:relative;
+  ">
+
+    <button onclick="closeMugConfigurator()" style="
+      position:absolute;
+      right:15px;
+      top:10px;
+      border:0;
+      background:none;
+      font-size:28px;
+      cursor:pointer;
+    ">×</button>
+
+    <h2>Cană personalizată ❤️</h2>
+
+    <p>Alege până la 2 poze și scrie mesajul pe care îl dorești.</p>
+
+    <label><strong>📷 Poza 1</strong></label>
+    <input type="file"
+           id="mugPhoto1"
+           accept="image/*"
+           onchange="previewMugPhoto(1)"
+           style="width:100%;margin:10px 0 15px;">
+
+    <label><strong>📷 Poza 2</strong></label>
+    <input type="file"
+           id="mugPhoto2"
+           accept="image/*"
+           onchange="previewMugPhoto(2)"
+           style="width:100%;margin:10px 0 15px;">
+
+    <label><strong>✍️ Textul dorit</strong></label>
+    <textarea id="mugText"
+              maxlength="100"
+              placeholder="Ex: Te iubesc, mama! ❤️"
+              style="
+                width:100%;
+                min-height:90px;
+                padding:12px;
+                border:1px solid #ddd;
+                border-radius:10px;
+                resize:vertical;
+                box-sizing:border-box;
+              "></textarea>
+
+    <h3>Previzualizare</h3>
+
+    <div id="mugPreview" style="
+      min-height:180px;
+      border:2px dashed #ddd;
+      border-radius:15px;
+      padding:15px;
+      text-align:center;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+    ">
+
+      <span style="color:#999;">
+        Aici va apărea personalizarea ta
+      </span>
+
+    </div>
+
+    <button onclick="orderMug()" style="
+      width:100%;
+      margin-top:20px;
+      padding:16px;
+      border:0;
+      border-radius:12px;
+      background:#111;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+    ">
+      🛒 COMANDĂ CANA
+    </button>
+
+  </div>
+</div>
+
+<script>
+function openMugConfigurator() {
+  document.getElementById("mugConfigurator").style.display = "block";
+}
+
+function closeMugConfigurator() {
+  document.getElementById("mugConfigurator").style.display = "none";
+}
+
+function previewMugPhoto(number) {
+
+  const input = document.getElementById("mugPhoto" + number);
+  const preview = document.getElementById("mugPreview");
+
+  if (!input.files || !input.files[0]) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    let oldImage = document.getElementById("previewPhoto" + number);
+
+    if (oldImage) {
+      oldImage.remove();
+    }
+
+    const img = document.createElement("img");
+
+    img.id = "previewPhoto" + number;
+    img.src = e.target.result;
+
+    img.style.width = "120px";
+    img.style.height = "120px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "10px";
+
+    preview.appendChild(img);
+  };
+
+  reader.readAsDataURL(input.files[0]);
+}
+
+document.getElementById("mugText").addEventListener("input", function() {
+
+  let text = document.getElementById("previewText");
+
+  if (!text) {
+
+    text = document.createElement("div");
+    text.id = "previewText";
+
+    text.style.width = "100%";
+    text.style.fontSize = "18px";
+    text.style.fontWeight = "bold";
+    text.style.marginTop = "10px";
+
+    document.getElementById("mugPreview").appendChild(text);
+  }
+
+  text.textContent = this.value || "Scrie mesajul tău ❤️";
+});
+
+function orderMug() {
+
+  const photo1 = document.getElementById("mugPhoto1").files[0];
+  const photo2 = document.getElementById("mugPhoto2").files[0];
+  const text = document.getElementById("mugText").value;
+
+  if (!photo1 && !photo2 && !text) {
+    alert("Te rugăm să adaugi cel puțin o poză sau un text.");
+    return;
+  }
+
+  alert("Personalizarea a fost pregătită! Urmează să conectăm acest buton la comanda prin WhatsApp.");
+}
+</script>
 
 <div class="category">
   <div class="product-image" style="height:120px;">
