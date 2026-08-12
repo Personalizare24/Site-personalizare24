@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalizare24 | Cadouri personalizate</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf7;
+      color: #29201d;
+    }
+
+    header {
+      background: white;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: #b46b52;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #29201d;
+      margin-left: 22px;
+      font-weight: 600;
+    }
+
+    .hero {
+      min-height: 520px;
+      padding: 70px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      background: linear-gradient(135deg, #f8e5dc, #fffaf7);
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #b46b52;
+    }
+
+    .hero p {
+      font-size: 19px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #b46b52;
+      color: white;
+      text-decoration: none;
+      padding: 15px 28px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #98533d;
+    }
+
+    .hero-image {
+      width: 42%;
+      min-height: 330px;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #d7a58f, #f5d8ca);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      box-shadow: 0 15px 40px rgba(100,60,40,.15);
+    }
+
+    .hero-image div {
+      font-size: 25px;
+      font-weight: bold;
+      color: white;
+    }
+
+    section {
+      padding: 70px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 40px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      background: white;
+      padding: 35px 20px;
+      text-align: center;
+      border-radius: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .category .icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .product-image {
+      height: 220px;
+      background: #f1ded5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product h3 {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #b46b52;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .about {
+      background: #f8e5dc;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 750px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .contact {
+      text-align: center;
+      background: white;
+    }
+
+    footer {
+      background: #29201d;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 7px;
+        font-size: 14px;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 6%;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero-image {
+        width: 100%;
+      }
+
+      .categories,
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories,
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Personalizare24</div>
+
+  <nav>
+    <a href="#acasa">Acasă</a>
+    <a href="#produse">Produse</a>
+    <a href="#despre">Despre noi</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="acasa">
+
+  <div class="hero-text">
+    <h1>Cadouri create <span>special pentru tine.</span></h1>
+
+    <p>
+      Descoperă cadouri personalizate cu suflet.
+      Transformăm fotografiile, numele și amintirile tale
+      în produse unice.
+    </p>
+
+    <a class="button" href="#produse">Descoperă produsele</a>
+  </div>
+
+  <div class="hero-image">
+    <div>
+      🎁<br><br>
+      Cadoul perfect<br>
+      începe cu o idee.
+    </div>
+  </div>
+
+</section>
+
+<section>
+
+  <h2 class="section-title">Alege categoria preferată</h2>
+
+  <div class="categories">
+
+    <div class="category">
+      <div class="icon">☕</div>
+      Căni personalizate
+    </div>
+
+    <div class="category">
+      <div class="icon">👕</div>
+      Tricouri
+    </div>
+
+    <div class="category">
+      <div class="icon">🛏️</div>
+      Perne
+    </div>
+
+    <div class="category">
+      <div class="icon">🔑</div>
+      Brelocuri
+    </div>
+
+  </div>
+
+</section>
+
+<section id="produse">
+
+  <h2 class="section-title">Produse populare</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <div class="product-image">☕</div>
+      <div class="product-info">
+        <h3>Cană personalizată</h3>
+        <p>O cană creată special pentru persoana iubită.</p>
+        <div class="price">de la 29,90 lei</div>
+        <a class="button" href="#contact">Comandă</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">👕</div>
+      <div class="product-info">
+        <h3>Tricou personalizat</h3>
+        <p>Poza, mesajul sau designul tău preferat.</p>
+        <div class="price">de la 49,90 lei</div>
+        <a class="button" href="#contact">Comandă</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🛏️</div>
+      <div class="product-info">
+        <h3>Pernă personalizată</h3>
+        <p>Un cadou emoționant pentru orice ocazie.</p>
+        <div class="price">de la 39,90 lei</div>
+        <a class="button" href="#contact">Comandă</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🔑</div>
+      <div class="product-info">
+        <h3>Breloc personalizat</h3>
+        <p>Mic, frumos și creat doar pentru tine.</p>
+        <div class="price">de la 19,90 lei</div>
+        <a class="button" href="#contact">Comandă</a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="about" id="despre">
+
+  <h2 class="section-title">De ce Personalizare24?</h2>
+
+  <p>
+    Pentru că cele mai frumoase cadouri sunt cele care spun o poveste.
+    La Personalizare24 transformăm ideile tale în produse personalizate
+    care păstrează oamenii și amintirile importante aproape.
+  </p>
+
+</section>
+
+<section class="contact" id="contact">
+
+  <h2 class="section-title">Vrei să personalizezi ceva?</h2>
+
+  <p style="margin-bottom:25px;">
+    Scrie-ne și împreună alegem produsul și modelul perfect.
+  </p>
+
+  <a class="button" href="https://wa.me/40700000000">
+    Comandă pe WhatsApp
+  </a>
+
+</section>
+
+<footer>
+  © 2026 Personalizare24 · Toate drepturile rezervate
+</footer>
+
+</body>
+  </html>
