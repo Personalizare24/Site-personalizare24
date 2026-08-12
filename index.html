@@ -298,12 +298,178 @@ Oi<!DOCTYPE html>
 </div>
 
 <!-- CONFIGURATOR CANĂ -->
-<div id="mugConfigurator" style="
+<!-- ALEGERE MODEL CANĂ -->
+<div id="mugModels" style="
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.65);
   z-index:9999;
+  overflow:auto;
+  padding:20px;
+">
+
+  <div style="
+    max-width:900px;
+    margin:30px auto;
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+  ">
+
+    <button onclick="closeMugModels()" style="
+      float:right;
+      border:0;
+      background:none;
+      font-size:28px;
+      cursor:pointer;
+    ">×</button>
+
+    <h2 style="text-align:center;margin-bottom:25px;">
+      Alege modelul cănii ❤️
+    </h2>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    ">
+
+      <!-- CANĂ ALBĂ -->
+      <div style="
+        border:1px solid #ddd;
+        border-radius:15px;
+        padding:15px;
+        text-align:center;
+      ">
+
+        <img src="cana albă.jpg"
+             style="width:100%;height:180px;object-fit:contain;border-radius:10px;">
+
+        <h3>Cană albă</h3>
+
+        <strong style="font-size:21px;color:#b46b52;">
+          40 lei
+        </strong>
+
+        <p style="font-size:14px;line-height:1.5;">
+          <strong>330 ml</strong><br>
+          Cană ceramică albă, cu exterior acoperit cu strat polimeric
+          pentru sublimare. Suprafața este ideală pentru imprimarea
+          fotografiilor și mesajelor personalizate, oferind culori clare
+          și rezistență în timp.
+        </p>
+
+        <button onclick="selectMug('Cană albă',40)" style="
+          width:100%;
+          padding:12px;
+          border:0;
+          border-radius:10px;
+          background:#111;
+          color:white;
+          font-weight:bold;
+          cursor:pointer;
+        ">
+          ALEGE ACEASTĂ CANĂ
+        </button>
+
+      </div>
+
+
+      <!-- CANĂ ROȘIE -->
+      <div style="
+        border:1px solid #ddd;
+        border-radius:15px;
+        padding:15px;
+        text-align:center;
+      ">
+
+        <img src="cana rosie.jpg"
+             style="width:100%;height:180px;object-fit:contain;border-radius:10px;">
+
+        <h3>Cană cu mâner și interior roșu</h3>
+
+        <strong style="font-size:21px;color:#b46b52;">
+          45 lei
+        </strong>
+
+        <p style="font-size:14px;line-height:1.5;">
+          <strong>330 ml</strong><br>
+          Cană ceramică cu mâner și interior roșu, exterior alb cu strat
+          polimeric pentru sublimare. Designul bicolor păstrează zona
+          de print intactă în timp ce oferă contrast vizual la mâner
+          și interior.
+        </p>
+
+        <button onclick="selectMug('Cană cu mâner și interior roșu',45)" style="
+          width:100%;
+          padding:12px;
+          border:0;
+          border-radius:10px;
+          background:#111;
+          color:white;
+          font-weight:bold;
+          cursor:pointer;
+        ">
+          ALEGE ACEASTĂ CANĂ
+        </button>
+
+      </div>
+
+
+      <!-- CANĂ ALBASTRĂ -->
+      <div style="
+        border:1px solid #ddd;
+        border-radius:15px;
+        padding:15px;
+        text-align:center;
+      ">
+
+        <img src="cana albastra.jpg"
+             style="width:100%;height:180px;object-fit:contain;border-radius:10px;">
+
+        <h3>Cană cu mâner și interior albastru deschis</h3>
+
+        <strong style="font-size:21px;color:#b46b52;">
+          45 lei
+        </strong>
+
+        <p style="font-size:14px;line-height:1.5;">
+          <strong>330 ml</strong><br>
+          Cană ceramică cu mâner și interior albastru deschis, exterior
+          alb cu strat polimeric pentru sublimare. Designul bicolor
+          păstrează zona de print intactă în timp ce oferă contrast
+          vizual la mâner și interior.
+        </p>
+
+        <button onclick="selectMug('Cană cu mâner și interior albastru deschis',45)" style="
+          width:100%;
+          padding:12px;
+          border:0;
+          border-radius:10px;
+          background:#111;
+          color:white;
+          font-weight:bold;
+          cursor:pointer;
+        ">
+          ALEGE ACEASTĂ CANĂ
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- CONFIGURATOR PERSONALIZARE -->
+<div id="mugConfigurator" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:10000;
   overflow:auto;
   padding:20px;
 ">
@@ -324,28 +490,43 @@ Oi<!DOCTYPE html>
       border:0;
       background:none;
       font-size:28px;
-      cursor:pointer;
     ">×</button>
 
-    <h2>Cană personalizată ❤️</h2>
+    <h2 id="selectedMugTitle">Cană personalizată ❤️</h2>
 
-    <p>Alege până la 2 poze și scrie mesajul pe care îl dorești.</p>
+    <p id="selectedMugPrice" style="
+      font-size:20px;
+      font-weight:bold;
+      color:#b46b52;
+    ">
+      40 lei
+    </p>
+
+    <p>
+      <strong>330 ml</strong><br>
+      Alege până la 2 poze și scrie mesajul pe care îl dorești.
+    </p>
 
     <label><strong>📷 Poza 1</strong></label>
+
     <input type="file"
            id="mugPhoto1"
            accept="image/*"
            onchange="previewMugPhoto(1)"
            style="width:100%;margin:10px 0 15px;">
 
+
     <label><strong>📷 Poza 2</strong></label>
+
     <input type="file"
            id="mugPhoto2"
            accept="image/*"
            onchange="previewMugPhoto(2)"
            style="width:100%;margin:10px 0 15px;">
 
+
     <label><strong>✍️ Textul dorit</strong></label>
+
     <textarea id="mugText"
               maxlength="100"
               placeholder="Ex: Te iubesc, mama! ❤️"
@@ -356,10 +537,10 @@ Oi<!DOCTYPE html>
                 border:1px solid #ddd;
                 border-radius:10px;
                 resize:vertical;
-                box-sizing:border-box;
               "></textarea>
 
-    <h3>Previzualizare</h3>
+
+    <h3 style="margin-top:20px;">Previzualizare</h3>
 
     <div id="mugPreview" style="
       min-height:180px;
@@ -380,7 +561,8 @@ Oi<!DOCTYPE html>
 
     </div>
 
-        <button onclick="addMugToCart()" style="
+
+    <button onclick="addMugToCart()" style="
       width:100%;
       margin-top:20px;
       padding:16px;
@@ -398,19 +580,61 @@ Oi<!DOCTYPE html>
   </div>
 </div>
 
+
 <script>
+
+let selectedMugName = "";
+let selectedMugPrice = 40;
+
+
 function openMugConfigurator() {
-  document.getElementById("mugConfigurator").style.display = "block";
+
+  document.getElementById("mugModels").style.display = "block";
+
 }
 
-function closeMugConfigurator() {
-  document.getElementById("mugConfigurator").style.display = "none";
+
+function closeMugModels() {
+
+  document.getElementById("mugModels").style.display = "none";
+
 }
+
+
+function selectMug(name, price) {
+
+  selectedMugName = name;
+  selectedMugPrice = price;
+
+  document.getElementById("selectedMugTitle").textContent =
+    name + " ❤️";
+
+  document.getElementById("selectedMugPrice").textContent =
+    price + " lei";
+
+  closeMugModels();
+
+  document.getElementById("mugConfigurator").style.display =
+    "block";
+
+}
+
+
+function closeMugConfigurator() {
+
+  document.getElementById("mugConfigurator").style.display =
+    "none";
+
+}
+
 
 function previewMugPhoto(number) {
 
-  const input = document.getElementById("mugPhoto" + number);
-  const preview = document.getElementById("mugPreview");
+  const input =
+    document.getElementById("mugPhoto" + number);
+
+  const preview =
+    document.getElementById("mugPreview");
 
   if (!input.files || !input.files[0]) return;
 
@@ -418,16 +642,19 @@ function previewMugPhoto(number) {
 
   reader.onload = function(e) {
 
-    let oldImage = document.getElementById("previewPhoto" + number);
+    let oldImage =
+      document.getElementById("previewPhoto" + number);
 
-    if (oldImage) {
-      oldImage.remove();
-    }
+    if (oldImage) oldImage.remove();
 
-    const img = document.createElement("img");
+    const img =
+      document.createElement("img");
 
-    img.id = "previewPhoto" + number;
-    img.src = e.target.result;
+    img.id =
+      "previewPhoto" + number;
+
+    img.src =
+      e.target.result;
 
     img.style.width = "120px";
     img.style.height = "120px";
@@ -435,44 +662,44 @@ function previewMugPhoto(number) {
     img.style.borderRadius = "10px";
 
     preview.appendChild(img);
+
   };
 
   reader.readAsDataURL(input.files[0]);
+
 }
 
-document.getElementById("mugText").addEventListener("input", function() {
 
-  let text = document.getElementById("previewText");
+document.getElementById("mugText")
+.addEventListener("input", function() {
+
+  let text =
+    document.getElementById("previewText");
 
   if (!text) {
 
-    text = document.createElement("div");
-    text.id = "previewText";
+    text =
+      document.createElement("div");
+
+    text.id =
+      "previewText";
 
     text.style.width = "100%";
     text.style.fontSize = "18px";
     text.style.fontWeight = "bold";
     text.style.marginTop = "10px";
 
-    document.getElementById("mugPreview").appendChild(text);
+    document.getElementById("mugPreview")
+      .appendChild(text);
+
   }
 
-  text.textContent = this.value || "Scrie mesajul tău ❤️";
+  text.textContent =
+    this.value || "Scrie mesajul tău ❤️";
+
 });
 
-function orderMug() {
 
-  const photo1 = document.getElementById("mugPhoto1").files[0];
-  const photo2 = document.getElementById("mugPhoto2").files[0];
-  const text = document.getElementById("mugText").value;
-
-  if (!photo1 && !photo2 && !text) {
-    alert("Te rugăm să adaugi cel puțin o poză sau un text.");
-    return;
-  }
-
-  alert("Personalizarea a fost pregătită! Urmează să conectăm acest buton la comanda prin WhatsApp.");
-}
 </script>
 
 <div class="category">
