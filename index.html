@@ -1061,7 +1061,6 @@ document.getElementById("mugText")
 
 <script>
 
-let cart = [];
 <script>
 
 let cart = [];
@@ -1070,13 +1069,22 @@ let selectedTshirtName = "";
 let selectedTshirtPrice = 45;
 let selectedTshirtSize = "";
 
+
+/* DESCHIDE MODELELE DE TRICOURI */
+
 function openTshirtModels() {
   document.getElementById("tshirtModels").style.display = "block";
 }
 
+
+/* ÎNCHIDE MODELELE DE TRICOURI */
+
 function closeTshirtModels() {
   document.getElementById("tshirtModels").style.display = "none";
 }
+
+
+/* ALEGE TRICOUL */
 
 function selectTshirt(name, price, sizeId) {
 
@@ -1095,11 +1103,9 @@ function selectTshirt(name, price, sizeId) {
 
   alert(
     name + " - " + size +
-    "\nPreț: " + price + " lei\n\n" +
-    "Urmează să adăugăm personalizarea."
+    "\nPreț: " + price + " lei"
   );
 }
-
 /* ADAUGĂ CANA ÎN COȘ */
 
 function addMugToCart() {
