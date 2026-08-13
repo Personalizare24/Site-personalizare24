@@ -1101,6 +1101,179 @@ function selectTshirt(name, price, sizeId) {
 
   closeTshirtModels();
 
+  openTshirtPersonalization();
+}
+
+
+function openTshirtPersonalization() {
+
+  let old = document.getElementById("tshirtPersonalization");
+
+  if (old) {
+    old.remove();
+  }
+
+  const modal = document.createElement("div");
+
+  modal.id = "tshirtPersonalization";
+
+  modal.style.cssText = `
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:10001;
+    overflow:auto;
+    padding:20px;
+  `;
+
+  modal.innerHTML = `
+
+    <div style="
+      max-width:500px;
+      margin:30px auto;
+      background:white;
+      border-radius:20px;
+      padding:25px;
+      position:relative;
+    ">
+
+      <button onclick="closeTshirtPersonalization()" style="
+        position:absolute;
+        right:15px;
+        top:10px;
+        border:0;
+        background:none;
+        font-size:28px;
+        cursor:pointer;
+      ">×</button>
+
+      <h2>👕 Personalizare tricou</h2>
+
+      <p style="margin:10px 0;">
+        <strong>${selectedTshirtName}</strong><br>
+        Mărime: <strong>${selectedTshirtSize}</strong><br>
+        Preț: <strong>${selectedTshirtPrice} lei</strong>
+      </p>
+
+      <p style="margin:15px 0;">
+        Pozele și textul sunt opționale. Poți încărca maximum 2 poze.
+      </p>
+
+      <label><strong>📷 Poza 1</strong></label>
+
+      <input type="file"
+        id="tshirtPhoto1"
+        accept="image/*"
+        style="width:100%;margin:10px 0 15px;">
+
+      <label><strong>📷 Poza 2</strong></label>
+
+      <input type="file"
+        id="tshirtPhoto2"
+        accept="image/*"
+        style="width:100%;margin:10px 0 15px;">
+
+      <label><strong>✍️ Text</strong></label>
+
+      <textarea
+        id="tshirtText"
+        maxlength="100"
+        placeholder="Scrie textul dorit..."
+        style="
+          width:100%;
+          min-height:90px;
+          padding:12px;
+          border:1px solid #ddd;
+          border-radius:10px;
+          resize:vertical;
+          box-sizing:border-box;
+        "
+      ></textarea>
+
+      <button onclick="addTshirtToCart()" style="
+        width:100%;
+        margin-top:20px;
+        padding:16px;
+        border:0;
+        border-radius:12px;
+        background:#111;
+        color:white;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        🛒 ADAUGĂ ÎN COȘ
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+
+function closeTshirtPersonalization() {
+
+  const modal = document.getElementById("tshirtPersonalization");
+
+  if (modal) {
+    modal.remove();
+  }
+}
+
+
+function addTshirtToCart() {
+
+  const photo1Input = document.getElementById("tshirtPhoto1");
+  const photo2Input = document.getElementById("tshirtPhoto2");
+  const text = document.getElementById("tshirtText").value.trim();
+
+  const photo1 = photo1Input.files[0];
+  const photo2 = photo2Input.files[0];
+
+  const product = {
+
+    id: Date.now(),
+
+    name: selectedTshirtName,
+
+    size: selectedTshirtSize,
+
+    price: selectedTshirtPrice,
+
+    text: text,
+
+    photo1: photo1
+      ? URL.createObjectURL(photo1)
+      : null,
+
+    photo2: photo2
+      ? URL.createObjectURL(photo2)
+      : null
+  };
+
+  cart.push(product);
+
+  updateCart();
+
+  closeTshirtPersonalization();
+
+  openCart();
+}
+
+  const size = document.getElementById(sizeId).value;
+
+  if (!size) {
+    alert("Te rugăm să alegi o mărime.");
+    return;
+  }
+
+  selectedTshirtName = name;
+  selectedTshirtPrice = price;
+  selectedTshirtSize = size;
+
+  closeTshirtModels();
+
   alert(
     name + " - " + size +
     "\nPreț: " + price + " lei"
