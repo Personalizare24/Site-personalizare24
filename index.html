@@ -1261,24 +1261,8 @@ function addTshirtToCart() {
   openCart();
 }
 
-  const size = document.getElementById(sizeId).value;
+  
 
-  if (!size) {
-    alert("Te rugăm să alegi o mărime.");
-    return;
-  }
-
-  selectedTshirtName = name;
-  selectedTshirtPrice = price;
-  selectedTshirtSize = size;
-
-  closeTshirtModels();
-
-  alert(
-    name + " - " + size +
-    "\nPreț: " + price + " lei"
-  );
-}
 /* ADAUGĂ CANA ÎN COȘ */
 
 function addMugToCart() {
