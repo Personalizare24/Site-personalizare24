@@ -1652,6 +1652,98 @@ function closeDeliveryForm() {
   }
 }
 
-    </script>
+
+/* TRIMITE COMANDA PE WHATSAPP */
+
+function sendOrder() {
+
+  const name = document.getElementById("deliveryName").value.trim();
+  const city = document.getElementById("deliveryCity").value.trim();
+  const county = document.getElementById("deliveryCounty").value.trim();
+  const street = document.getElementById("deliveryStreet").value.trim();
+  const number = document.getElementById("deliveryNumber").value.trim();
+  const block = document.getElementById("deliveryBlock").value.trim();
+  const stair = document.getElementById("deliveryStair").value.trim();
+  const apartment = document.getElementById("deliveryApartment").value.trim();
+  const phone = document.getElementById("deliveryPhone").value.trim();
+
+  if (!name || !city || !county || !street || !number || !phone) {
+    alert("Te rugăm să completezi toate câmpurile obligatorii.");
+    return;
+  }
+
+  let message = "🛍️ COMANDĂ NOUĂ - Personalizare24\n\n";
+
+  message += "👤 CLIENT\n";
+  message += "Nume: " + name + "\n";
+  message += "Telefon: " + phone + "\n\n";
+
+  message += "📍 LIVRARE\n";
+  message += "Oraș/Sat: " + city + "\n";
+  message += "Județ: " + county + "\n";
+  message += "Strada: " + street + "\n";
+  message += "Nr.: " + number + "\n";
+
+  if (block) {
+    message += "Bloc: " + block + "\n";
+  }
+
+  if (stair) {
+    message += "Scara: " + stair + "\n";
+  }
+
+  if (apartment) {
+    message += "Apartament: " + apartment + "\n";
+  }
+
+  message += "\n🛒 PRODUSE\n";
+
+  let productsTotal = 0;
+
+  cart.forEach((item, index) => {
+
+    productsTotal += item.price;
+
+    message += "\n" + (index + 1) + ". " + item.name + "\n";
+
+    if (item.size) {
+      message += "Mărime: " + item.size + "\n";
+    }
+
+    message += "Preț: " + item.price + " lei\n";
+
+    if (item.text) {
+      message += "Text: " + item.text + "\n";
+    }
+
+    if (item.photo1) {
+      message += "📷 Are poza 1\n";
+    }
+
+    if (item.photo2) {
+      message += "📷 Are poza 2\n";
+    }
+
+  });
+
+  const transport = 25;
+  const total = productsTotal + transport;
+
+  message += "\n💰 Produse: " + productsTotal + " lei";
+  message += "\n🚚 Transport: " + transport + " lei";
+  message += "\n💵 TOTAL: " + total + " lei";
+
+  const whatsappNumber = "40741294340";
+
+  const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+}
+
+</script>
 </body>
-  </html>
+</html>
