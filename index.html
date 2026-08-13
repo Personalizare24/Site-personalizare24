@@ -1467,8 +1467,189 @@ function checkout() {
     return;
   }
 
-  alert("Următorul pas: completarea datelor pentru livrare.");
+  let old = document.getElementById("deliveryForm");
 
+  if (old) {
+    old.remove();
+  }
+
+  const form = document.createElement("div");
+
+  form.id = "deliveryForm";
+
+  form.style.cssText = `
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:10002;
+    overflow:auto;
+    padding:20px;
+  `;
+
+  form.innerHTML = `
+
+    <div style="
+      max-width:500px;
+      margin:30px auto;
+      background:white;
+      border-radius:20px;
+      padding:25px;
+      position:relative;
+    ">
+
+      <button onclick="closeDeliveryForm()" style="
+        position:absolute;
+        right:15px;
+        top:10px;
+        border:0;
+        background:none;
+        font-size:28px;
+        cursor:pointer;
+      ">×</button>
+
+      <h2>📦 Date pentru livrare</h2>
+
+      <p style="margin:10px 0 20px;color:#666;">
+        Completează datele la care dorești să primești comanda.
+      </p>
+
+      <label><strong>Nume și prenume *</strong></label>
+      <input id="deliveryName"
+        type="text"
+        placeholder="Ex: Maria Popescu"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Oraș / sat *</strong></label>
+      <input id="deliveryCity"
+        type="text"
+        placeholder="Ex: Bârlad"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Județ *</strong></label>
+      <input id="deliveryCounty"
+        type="text"
+        placeholder="Ex: Vaslui"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Strada *</strong></label>
+      <input id="deliveryStreet"
+        type="text"
+        placeholder="Ex: Strada Republicii"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Număr *</strong></label>
+      <input id="deliveryNumber"
+        type="text"
+        placeholder="Ex: 25"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Bloc</strong></label>
+      <input id="deliveryBlock"
+        type="text"
+        placeholder="Opțional"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Scara</strong></label>
+      <input id="deliveryStair"
+        type="text"
+        placeholder="Opțional"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Apartament</strong></label>
+      <input id="deliveryApartment"
+        type="text"
+        placeholder="Opțional"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <label><strong>Număr de telefon *</strong></label>
+      <input id="deliveryPhone"
+        type="tel"
+        placeholder="Ex: 07xx xxx xxx"
+        style="
+          width:100%;
+          padding:12px;
+          margin:8px 0 15px;
+          border:1px solid #ddd;
+          border-radius:10px;
+        ">
+
+      <button onclick="sendOrder()" style="
+        width:100%;
+        margin-top:10px;
+        padding:16px;
+        border:0;
+        border-radius:12px;
+        background:#111;
+        color:white;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        📦 TRIMITE COMANDA
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(form);
+}
+
+
+function closeDeliveryForm() {
+
+  const form = document.getElementById("deliveryForm");
+
+  if (form) {
+    form.remove();
+  }
 }
 
     </script>
