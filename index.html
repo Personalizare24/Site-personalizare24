@@ -1249,7 +1249,7 @@ function closeTshirtPersonalization() {
 }
 
 
-function addTshirtToCart() {
+async function addTshirtToCart() {
 
   const photo1Input = document.getElementById("tshirtPhoto1");
   const photo2Input = document.getElementById("tshirtPhoto2");
@@ -1258,34 +1258,48 @@ function addTshirtToCart() {
   const photo1 = photo1Input.files[0];
   const photo2 = photo2Input.files[0];
 
-  const product = {
+  try {
 
-    id: Date.now(),
+    // Arată că se încarcă pozele
+    alert("Se încarcă pozele, te rugăm să aștepți...");
 
-    name: selectedTshirtName,
+    // Încarcă pozele în Cloudinary
+    const photo1Url = await uploadToCloudinary(photo1);
+    const photo2Url = await uploadToCloudinary(photo2);
 
-    size: selectedTshirtSize,
+    const product = {
 
-    price: selectedTshirtPrice,
+      id: Date.now(),
 
-    text: text,
+      name: selectedTshirtName,
 
-    photo1: photo1
-      ? URL.createObjectURL(photo1)
-      : null,
+      size: selectedTshirtSize,
 
-    photo2: photo2
-      ? URL.createObjectURL(photo2)
-      : null
-  };
+      price: selectedTshirtPrice,
 
-  cart.push(product);
+      text: text,
 
-  updateCart();
+      photo1: photo1Url,
 
-  closeTshirtPersonalization();
+      photo2: photo2Url
+    };
 
-  openCart();
+    cart.push(product);
+
+    updateCart();
+
+    closeTshirtPersonalization();
+
+    openCart();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Nu am putut încărca pozele. Verifică internetul și încearcă din nou."
+    );
+  }
 }
 
   
